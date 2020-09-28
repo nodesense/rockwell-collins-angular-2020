@@ -1,3 +1,16 @@
+# Get start
+
+>  git checkout https://github.com/nodesense/rockwell-collins-angular-2020
+
+or download zip file  and extract the zip file
+
+> cd rockwell-collins-angular-2020
+
+> npm install
+
+> ng serve
+
+
 # ProductApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
