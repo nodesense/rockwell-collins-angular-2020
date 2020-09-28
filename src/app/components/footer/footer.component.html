@@ -1,0 +1,8 @@
+<div>
+    <!-- parent model data cannot be accessed in child view -->
+    <!-- view can access only its own component model data -->
+    <hr />
+    <p>Copyrights {{title}} @{{info.year}}, {{info.company}}</p>
+
+    <app-address [address]="address" ></app-address>
+</div>

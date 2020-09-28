@@ -1,0 +1,43 @@
+<div>
+    <!-- {{}} - interpolation, accept expression, returns string -->
+    <!-- data binding
+        model data is binded to html view
+    -->
+    
+    <!-- two hierarchy 
+            1. Component
+            2. HTML DOM
+    -->
+
+    <!-- app component is parent of header, home,about, footer -->
+    <!-- HTML DOM, div is parent element/tag, app-header, ... are children dom -->
+    <div>
+        <app-header>
+            <!-- content children, ng-content to transclude -->
+            <h2>Welcome to {{appTitle}}</h2>
+        </app-header>
+
+        <app-home></app-home>
+
+        <app-about></app-about>
+
+        <app-cart></app-cart>
+        <app-checkout></app-checkout>
+        
+        <!-- 
+            pass data to child using property binding
+
+            [propertyName] - the data passed as is to child component as ref
+            propertyName - static data or fixed value
+
+            {{}} interpolation SHOULD never use for property binding - {{}}
+
+            {{}} will change your object/data to string format then pass data
+        -->
+        <app-footer [info]="info"  
+                    [title]="appTitle"
+                    [address]="headOffice"
+                    ></app-footer>
+    </div>
+
+</div>
