@@ -22,6 +22,10 @@ export class CartService {
   private _itemsCount: number = 0; // sum of qty
   private _amount: number = 0; // all total
 
+  get cartItems() {
+    return this._cartItems;
+  }
+
   //  service.amount --> calls getter automaticallly
   get amount() {
     return this._amount;
