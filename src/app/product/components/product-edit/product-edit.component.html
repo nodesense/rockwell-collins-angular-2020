@@ -1,1 +1,17 @@
-<p>product-edit works!</p>
+<h2>Product Edit</h2>
+
+<form (ngSubmit)="saveProduct()">
+
+    Name <input name="name" [(ngModel)]="product.name" />
+
+    Price <input name="price" type="number" 
+                              [(ngModel)]="product.price" />
+                              
+    Year <input name="year" type="number"
+                             [(ngModel)]="product.year" />
+
+    <button type="submit">Save</button>
+</form>
+
+<button (click)="cancelEdit()">Cancel</button>
+<button (click)="deleteProduct()">Delete</button>
