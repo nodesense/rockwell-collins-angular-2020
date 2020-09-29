@@ -1,0 +1,14 @@
+<h2>Product Home</h2>
+
+<a routerLink="/products" class="button" 
+routerLinkActive="success"
+[routerLinkActiveOptions]="{exact:true}"
+> List </a>
+<a routerLink="/products/create" class="button" routerLinkActive="success"> Create </a>
+<a routerLink="/products/search" class="button" routerLinkActive="success"> Search </a>
+
+
+<!-- for product home sub pages, list, create, edit, search -->
+<router-outlet>
+
+</router-outlet>

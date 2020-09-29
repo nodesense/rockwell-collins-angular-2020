@@ -1,3 +1,5 @@
+import { ProductModule } from './product/product.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CartModule } from './cart/cart.module';
 
 // imported from node_modules
@@ -25,6 +27,8 @@ import { AppRoutingModule } from './app.routing.module';
         SharedModule,
 
         CartModule,
+
+        ProductModule,
         
         AppRoutingModule
         // Optional import RouterModule here
@@ -37,6 +41,7 @@ import { AppRoutingModule } from './app.routing.module';
         AboutComponent,
         HeaderComponent,
         FooterComponent,
+        NotFoundComponent
         //HomeComponent, FooterComponent, .....
     ],
     providers: [], // discussed later, services, DI

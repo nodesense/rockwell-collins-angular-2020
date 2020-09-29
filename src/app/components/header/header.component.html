@@ -4,5 +4,17 @@
     <button (click)="logout()">Logout</button>
     
     <ng-content></ng-content>
+
+    <!-- routerLinkActiveOptions use exact match, not startWith /-->
+
+    <a routerLink="/" class="button" 
+                      routerLinkActive="success"
+                      [routerLinkActiveOptions]="{exact:true}"
+                      > Home </a>
+    <a routerLink="/products" class="button" routerLinkActive="success"> Products </a>
+    <a routerLink="/cart" class="button" routerLinkActive="success"> Cart </a>
+    <a routerLink="/checkout" class="button" routerLinkActive="success"> Checkout </a>
+
+    
     <hr />
 </div>

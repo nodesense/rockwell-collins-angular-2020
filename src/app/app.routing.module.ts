@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
@@ -17,7 +18,13 @@ const routes: Route[] = [
     {
         path: 'about',
         component: AboutComponent
+    },
+    // end of the config
+    {
+        path: '**', // match all, not found
+        component: NotFoundComponent
     }
+
 ]
 
 @NgModule({
