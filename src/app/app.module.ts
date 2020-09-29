@@ -13,6 +13,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app.routing.module';
 
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
@@ -25,7 +26,8 @@ import { SharedModule } from './shared/shared.module';
 
         CartModule,
         
-        
+        AppRoutingModule
+        // Optional import RouterModule here
         // InventoryModule, ProductModule
     ],
     declarations: [
