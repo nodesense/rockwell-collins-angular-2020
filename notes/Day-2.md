@@ -40,4 +40,20 @@ ng g class product/models/product
 ng g class product/models/brand
 
 ng g service product/services/product
+
+
+ng g guard product/guards/can-edit
+
+Select CanActivate
+
+ng g guard product/guards/save-alert
+
+Unselect using SPACE BAR
+
+use Down Arrow and SPACE BAR to select CanDeactivate
+
+CanDeactivate
+
+
+
 ```

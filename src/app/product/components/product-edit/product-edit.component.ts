@@ -2,8 +2,9 @@ import { Brand } from './../../models/brand';
 import { Observable } from 'rxjs';
 import { ProductService } from './../../services/product.service';
 import { Product } from './../../models/product';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 // create/ update existing record
 
@@ -17,6 +18,12 @@ export class ProductEditComponent implements OnInit {
 
   product: Product = new Product(); //
   brands$: Observable<Brand[]>;
+
+  // instance of the directive
+  //<form #productForm="ngForm"  
+  @ViewChild("productForm", {static: true})
+  productForm: NgForm;
+
 
   constructor(private route: ActivatedRoute, 
               private router: Router, 
@@ -54,6 +61,10 @@ export class ProductEditComponent implements OnInit {
                        .subscribe( data => {
                          this.router.navigateByUrl("/products")
                        })
+  }
+
+  get isDirty() {
+    return this.productForm.dirty;
   }
 
 }

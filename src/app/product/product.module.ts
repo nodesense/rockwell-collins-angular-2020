@@ -1,3 +1,4 @@
+import { CanEditGuard } from './guards/can-edit.guard';
 // product.module.ts
 import { SharedModule } from './../shared/shared.module';
 import { Route, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ import { ProductGridComponent } from './components/product-grid/product-grid.com
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SaveAlertGuard } from './guards/save-alert.guard';
 
 //FIXME: move to product.routing.module.ts
 const routes: Route[] = [
@@ -24,11 +26,14 @@ const routes: Route[] = [
       },
       {
         path: 'edit/:id', // products/edit/10
-        component: ProductEditComponent
+        component: ProductEditComponent,
+        canActivate: [CanEditGuard],
+        canDeactivate: [SaveAlertGuard]
       },
       {
         path: 'create', // products/create
-        component: ProductEditComponent
+        component: ProductEditComponent,
+        canDeactivate: [SaveAlertGuard]
       },
       {
         path: 'search',
