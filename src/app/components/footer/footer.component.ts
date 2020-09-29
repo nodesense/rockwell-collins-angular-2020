@@ -23,10 +23,22 @@ export class FooterComponent implements OnInit {
   @Input()
   address: Address;
 
+  highlight: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
     console.log('typeof info', typeof this.info)
+  }
+
+  divClick(event: Event) {
+    console.log('divclick event ', event)
+  }
+
+  contactUs(event: Event) {
+    console.log("event ", event)
+    // cancel the bubble event going up
+    event.stopPropagation();
   }
 
 }

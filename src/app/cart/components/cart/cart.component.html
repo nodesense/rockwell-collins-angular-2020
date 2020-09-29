@@ -1,9 +1,33 @@
 <h2>Cart</h2>
 
+
 <button (click)="addItem()" >Add Item</button>
 <button (click)="emptyCart()">Empty</button>
 
-<table>
+<!-- ngModel is directive, from forms module 
+    Two way binding
+    if value changed in view, it updates model data
+    if value changed in model, it updates the view
+
+    [] - property binding - bring model value to view
+    () - event binding, update model from view
+    [()] - two way binding - both direction
+-->
+
+<select [(ngModel)]="fieldName" >
+    <option value="name">name</option>
+    <option value="qty">qty</option>
+    <option value="price">price</option>
+</select>
+
+<select [(ngModel)]="orderBy" >
+    <option value="asc">asc</option>
+    <option value="desc">desc</option>
+</select>
+
+<p>Sort by {{fieldName}}, orderBy {{orderBy}}</p>
+
+<table *ngIf="cartItems.length > 0 else elsePartTableEmpty">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -13,16 +37,38 @@
         <th>Remove</th>
     </tr>
 
-    <!-- * in attribute represent structural directive, which can add/remove elements dynamically -->
+    <!-- * in attribute represent structural directive, which can add/remove elements dynamically   -->
 
-    <tr *ngFor="let item of cartItems">
+    <!-- sort:'price':'asc'  -->
+    <tr *ngFor="let item of (cartItems | sort: fieldName: orderBy) ">
         <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
+        <td>{{item.name | uppercase }}</td>
         <td>{{item.qty}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.qty * item.price}}</td>
+        <td>{{item.price | currency:'INR'}}</td>
+        <td>{{ (item.qty * item.price) | currency:'INR' }}</td>
         <td>
             <button (click)="removeItem(item.id)"> X </button>
         </td>
     </tr>
 </table>
+
+<!-- [] , ()  are sugar provided by angular for easy of use
+
+    [] - presented as "bind-""
+    () - "on-"
+
+    only for knowledge, in practice use (), [], [()]
+-->
+
+<app-like bind-likes="cartPageLikes"
+          on-likesChange="cartPageLikes=$event"> 
+</app-like>
+
+<!-- a place holder, in memory, not shown in page 
+     # - template variable reference, represent dom element/object in memory
+     local to this template, can't accessed from other component
+
+-->
+<ng-template #elsePartTableEmpty>
+    <p>Sorry, no items in the shopping cart!!</p>
+</ng-template>

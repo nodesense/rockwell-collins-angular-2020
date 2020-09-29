@@ -33,6 +33,8 @@ create angular module, to have code shared across the application code
 
     ng g interface shared/models/address
 
+    ng g pipe shared/pipes/sort
+
 
 ```
 

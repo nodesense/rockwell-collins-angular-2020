@@ -1,1 +1,7 @@
-<p>home works!</p>
+<h2>Home</h2>
+
+<app-like [likes]="homeLikes"
+          (likesChange)="homeLikes=$event"
+></app-like>
+
+<p>Home page likes {{homeLikes}}</p>

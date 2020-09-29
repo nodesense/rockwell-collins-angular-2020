@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
+  aboutLikes = 1234;
+  
   constructor() { }
 
   ngOnInit(): void {

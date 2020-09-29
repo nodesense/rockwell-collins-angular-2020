@@ -12,7 +12,10 @@
     <!-- app component is parent of header, home,about, footer -->
     <!-- HTML DOM, div is parent element/tag, app-header, ... are children dom -->
     <div>
-        <app-header>
+        <!-- subscribe for event emitted by child component 
+            $event is boolean true/false
+        -->
+        <app-header (logoutEvent)="handleLogout($event)"  >
             <!-- content children, ng-content to transclude -->
             <h2>Welcome to {{appTitle}}</h2>
         </app-header>

@@ -8,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  cartPageLikes = 98754;
+  
+  // both fieldName, orderBy are string type
+  // type inference, compiler see the right side value, presume the type
+  fieldName = "price"
+  orderBy="asc"
+
   // private means local to component, not accessible in view
   cartItems: CartItem[]; // ref to cartservice.cartItems, mutablity/immutablity matters
   constructor(private cartService: CartService) {
     console.log('CartComponent created');
-
+   
     this.cartItems = this.cartService.cartItems; // calls getter function
    }
 

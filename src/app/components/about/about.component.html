@@ -1,1 +1,9 @@
-<p>about works!</p>
+<h2>About</h2>
+
+<!-- angular [()] is called syntatic sugar 
+    angular internally expands into property and event binding
+-->
+
+<app-like [(likes)]="aboutLikes"></app-like>
+
+<p>About page likes {{aboutLikes}}</p>

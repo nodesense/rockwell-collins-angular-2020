@@ -24,4 +24,9 @@ export class AppComponent {
                            state: 'KA',
                            pincode: 560001
                         }
+
+
+    handleLogout(data: boolean) {
+        console.log('app logic for logout', data)
+    }
 }

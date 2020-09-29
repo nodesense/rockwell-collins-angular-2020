@@ -1,1 +1,23 @@
-<p>checkout works!</p>
+<h2>Checkout</h2>
+
+<!-- # represent template local variabels , NOT TWO WAY /PROPERTY BINDING
+
+        # the access to DOM Element
+
+        jquery $() lookup is not safe, it goes outside component, scan entire page
+
+        # - limited to only this component scope
+-->
+
+<p>Coupon</p>
+<input #couponInput />
+
+<p #discount></p>
+
+<button (click)="discount.textContent= couponInput.value + ' Coupon Applied'  ">
+        Apply coupon
+</button>
+
+<app-like [(likes)]="checkoutLikes" 
+          #likeComp   >
+</app-like>

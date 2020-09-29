@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  homeLikes = 10000;
+
   constructor() { }
 
   ngOnInit(): void {

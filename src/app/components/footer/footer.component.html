@@ -1,8 +1,18 @@
-<div>
+<div (mouseenter)="highlight=true"
+     (mouseleave)="highlight=false"
+     [ngClass]="{highlightBG: highlight}"
+>
     <!-- parent model data cannot be accessed in child view -->
     <!-- view can access only its own component model data -->
     <hr />
     <p>Copyrights {{title}} @{{info.year}}, {{info.company}}</p>
 
     <app-address [address]="address" ></app-address>
+
+    <!-- $event is the event object, location of click,... -->
+    <div (click)="divClick($event)">
+         <button (click)="contactUs($event)" >Contact</button>
+         <p>Contact time: 9:00 AM to 5:30 PM</p>
+    </div>
+
 </div>
