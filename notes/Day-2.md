@@ -37,5 +37,7 @@ ng g c product/components/product-edit
 ng g c product/components/product-search
 
 ng g class product/models/product
+ng g class product/models/brand
+
 ng g service product/services/product
 ```

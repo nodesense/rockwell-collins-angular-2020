@@ -1,3 +1,5 @@
+import { Brand } from './../../models/brand';
+import { Observable } from 'rxjs';
 import { ProductService } from './../../services/product.service';
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +16,7 @@ export class ProductEditComponent implements OnInit {
   // products/edit/10 - /:id (id ==> 10) 
 
   product: Product = new Product(); //
+  brands$: Observable<Brand[]>;
 
   constructor(private route: ActivatedRoute, 
               private router: Router, 
@@ -29,6 +32,8 @@ export class ProductEditComponent implements OnInit {
                            this.product = product;
                          });
     }
+
+    this.brands$ = this.productService.getBrands();
   }
 
   cancelEdit() {

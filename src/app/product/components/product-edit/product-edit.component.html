@@ -1,16 +1,60 @@
 <h2>Product Edit</h2>
 
-<form (ngSubmit)="saveProduct()">
+<!-- 
+    <input #myInput <---- DOM 
+           #productName="ngModel" <------ productName is instance of the directive ngModel
+-->
 
-    Name <input name="name" [(ngModel)]="product.name" />
+<!-- if we imported FormsModule in Modules, angular inject ngForm directive
+automatically -->
+
+
+<form (ngSubmit)="saveProduct()"
+      #productForm="ngForm"  
+>
+    <p *ngIf="productForm.invalid">
+        Form is invalid
+    </p>
+
+    <p *ngIf="productForm.dirty">
+        Form is changed
+    </p>
+
+    Name <input name="name" [(ngModel)]="product.name"
+                required
+                minlength="3"
+                #productName="ngModel"
+    />
+
+    <p *ngIf="productName.invalid">
+        product name is invalid
+    </p>
+
+    <pre *ngIf="productName.errors">
+         {{productName.errors | json}}  
+    </pre>
 
     Price <input name="price" type="number" 
-                              [(ngModel)]="product.price" />
+                              [(ngModel)]="product.price"
+                              required
+                              />
                               
     Year <input name="year" type="number"
-                             [(ngModel)]="product.year" />
+                             [(ngModel)]="product.year"
+                             required
+                             />
 
-    <button type="submit">Save</button>
+
+    Brand 
+    <select name="brandId" [(ngModel)]="product.brandId" required>
+        <option *ngFor="let brand of brands$ | async"
+                [value]="brand.id"> {{brand.name}} 
+        </option>
+    </select>
+
+
+    <button type="submit"
+            [disabled]="productForm.invalid">Save</button>
 </form>
 
 <button (click)="cancelEdit()">Cancel</button>

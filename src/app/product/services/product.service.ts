@@ -1,3 +1,4 @@
+import { Brand } from './../models/brand';
 import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
@@ -16,6 +17,12 @@ export class ProductService {
   getProducts():Observable<Product[]> {
     return this.http
                .get<Product[]>(`${environment.apiEndPoint}/api/products`);
+  }
+
+
+  getBrands():Observable<Brand[]> {
+    return this.http
+               .get<Brand[]>(`${environment.apiEndPoint}/api/brands`);
   }
 
   getProduct(id: number): Observable<Product> {
