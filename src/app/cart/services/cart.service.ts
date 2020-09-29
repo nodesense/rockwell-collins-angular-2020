@@ -1,6 +1,8 @@
 import { CartItem } from './../models/cart-item';
 import { Injectable } from '@angular/core';
 
+import { Subject, BehaviorSubject } from 'rxjs';
+
 // Service
 // To implement Business Logic, independent of UI
 // to interface with API services
@@ -22,6 +24,20 @@ export class CartService {
   private _itemsCount: number = 0; // sum of qty
   private _amount: number = 0; // all total
 
+  // observable convention to end with $
+  // subject publish data only on .next call
+  // default or last known values are not published
+  
+  //amount$: Subject<number> = new Subject();
+  //itemsCount$: Subject<number> = new Subject();
+
+  // behaviour subject cache last known value,
+  // last published value
+  // if any subscriber subscribe for data, it immediately publish
+  // the last known value
+  amount$: BehaviorSubject<number> = new BehaviorSubject(this._amount);
+  itemsCount$: BehaviorSubject<number> = new BehaviorSubject(this._itemsCount)
+
   get cartItems() {
     return this._cartItems;
   }
@@ -36,6 +52,9 @@ export class CartService {
     // boundary check
     if (value < 0) throw new Error("Invalid amount")
     this._amount = value;
+
+    // publish the changed value to subscribers
+    this.amount$.next(this._amount); // publish the values
   }
 
   get itemsCount() {
@@ -44,6 +63,8 @@ export class CartService {
 
   set itemsCount(value: number) {
     this._itemsCount = value;
+
+    this.itemsCount$.next(this._itemsCount)
   }
 
   calculate() {
@@ -53,6 +74,10 @@ export class CartService {
         a += item.price * item.qty;
         n += item.qty;
       }
+
+      // call setter to set value ,and pubish the value
+      this.amount = a;
+      this.itemsCount = n;
   }
 
   addItem(item: CartItem) {

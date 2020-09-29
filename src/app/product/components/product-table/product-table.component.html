@@ -1,1 +1,15 @@
-<p>product-table works!</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Year</th>
+        <th>+Cart</th>
+    </tr>
+
+    <tr *ngFor="let product of products">
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.year}}</td>
+        <td> <button (click)="addToCart(product)"> +Cart </button> </td>
+    </tr>
+</table>

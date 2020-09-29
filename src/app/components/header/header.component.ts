@@ -1,6 +1,8 @@
+import { CartService } from './../../cart/services/cart.service';
 import { Component, OnInit, 
          Output, EventEmitter
 } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -19,9 +21,25 @@ export class HeaderComponent implements OnInit {
   @Output()
   logoutEvent: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
+  amount: number;
+
+  //async pipe, make it easy for subscribe
+
+  totalItemsInCart$: Observable<number>;
+
+  constructor(private cartService: CartService) { 
+    this.totalItemsInCart$ = this.cartService.itemsCount$;
+  }
 
   ngOnInit(): void {
+    // amount is number type, value type
+    // this.amount = this.cartService.amount; // calls get amount()
+
+    // subscribe is a callback, called whenever new value published .next(xyz)
+    this.cartService.amount$.subscribe ( value => {
+      console.log('Amount is ', value);
+      this.amount = value;
+    } )
   }
 
   logout() {

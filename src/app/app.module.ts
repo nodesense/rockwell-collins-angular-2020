@@ -17,12 +17,16 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app.routing.module';
 
+// for API calls
+import {HttpClientModule} from '@angular/common/http';
+
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
 // module is logical collection
 @NgModule({
     imports: [
         // other module dependencies, 3rd parties, custom modules listed
+        HttpClientModule, 
         BrowserModule, // brings many other modules internally CommonModule
         SharedModule,
 

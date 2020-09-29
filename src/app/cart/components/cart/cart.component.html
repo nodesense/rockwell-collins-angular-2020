@@ -50,6 +50,14 @@
             <button (click)="removeItem(item.id)"> X </button>
         </td>
     </tr>
+
+    <tr >
+        <td colspan="2">Total</td>
+        <td> {{itemsCount$ | async}} items </td>
+        <td></td>
+        <!-- nested pipes , left to right -->
+        <td> {{amount$ | async | currency:'INR'}}</td>
+    </tr>
 </table>
 
 <!-- [] , ()  are sugar provided by angular for easy of use

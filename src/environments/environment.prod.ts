@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  
+  apiEndPoint: 'http://localhost:7070',
+  authEndPoint: 'http://localhost:7070/oauth'
 };

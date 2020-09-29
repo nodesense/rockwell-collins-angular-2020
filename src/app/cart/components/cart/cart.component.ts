@@ -1,6 +1,7 @@
 import { CartItem } from './../../models/cart-item';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -17,10 +18,19 @@ export class CartComponent implements OnInit {
 
   // private means local to component, not accessible in view
   cartItems: CartItem[]; // ref to cartservice.cartItems, mutablity/immutablity matters
+
+
+  amount$:Observable<number>;
+  itemsCount$: Observable<number>;
+
   constructor(private cartService: CartService) {
     console.log('CartComponent created');
    
+    // cartItems is an array, reference type
+    // cartItems in cart component and cartItems in service are same object
     this.cartItems = this.cartService.cartItems; // calls getter function
+    this.amount$ = this.cartService.amount$;
+    this.itemsCount$ = this.cartService.itemsCount$;
    }
 
   ngOnInit(): void {

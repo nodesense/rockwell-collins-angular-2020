@@ -15,6 +15,16 @@
     <a routerLink="/cart" class="button" routerLinkActive="success"> Cart </a>
     <a routerLink="/checkout" class="button" routerLinkActive="success"> Checkout </a>
 
+
+    <span> Cart {{amount | currency:'INR'}}</span>
+    <!-- async is a pipe works with observable, promises
+         it automatically subscribe for the changes
+         when the new value published, it displays the content.
+
+         When component destroy, async unsubscribe from subject, no leak
+    -->
+    <span> Qty {{totalItemsInCart$ | async }}</span>
+
     
     <hr />
 </div>
