@@ -57,3 +57,20 @@ CanDeactivate
 
 
 ```
+
+# HTML5, PathLocationStrategy
+    Works only on browser that support html5
+    Good SEO
+
+    Cons: When the user refresh the page, the browser send request to server
+            asking angular page
+
+        Web server should be dynamic to serve the index page, instead of 404
+
+# Hash Location
+
+    Good
+        -- refresh 
+            alwasy ask for index page
+    Cons
+        -- SEO

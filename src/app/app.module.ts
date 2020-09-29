@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 // for API calls
 import {HttpClientModule} from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
@@ -48,7 +49,13 @@ import {HttpClientModule} from '@angular/common/http';
         NotFoundComponent
         //HomeComponent, FooterComponent, .....
     ],
-    providers: [], // discussed later, services, DI
+    providers: [
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
+        }
+
+    ], // discussed later, services, DI
 
     // how angular knows the starting/bootstrap component
     bootstrap: [
