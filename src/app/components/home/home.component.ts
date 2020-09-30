@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   decrement() {
+    this.store.dispatch(CounterActions.DecrementAction({payload: 5}))
   }
 
   reset() {

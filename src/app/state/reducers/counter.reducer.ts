@@ -7,13 +7,18 @@ import * as CounterActions from '../actions/counter.actions';
 // initialState => {sum: 0}
 export const initialState = initializeState();
 const reducer = createReducer(
-    initialState,
+    initialState, // default case
     // implementing action, by incrementing sum + value from payload
     // shall be called when do dispatch IncrementAction
     on(CounterActions.IncrementAction, (state: CounterState, action ) => {
         // returned value set back to store
         return { sum: state.sum + action.payload }
-    }),
+    }), 
+        // action => {payload: 5}, destructure by defining as {payload}
+    on(CounterActions.DecrementAction, (state: CounterState, {payload} ) => {
+        // returned value set back to store
+        return { sum: state.sum - payload }
+    }), 
     // called when dispatch ResetAction
     on(CounterActions.ResetAction, (state: CounterState, action) => {
         return {sum: 0}
@@ -25,6 +30,17 @@ export function CounterReducer(state: CounterState , action:Action ){
     console.log("CounterReducer state ", state, "action", action)
     return reducer(state as any, action)
 }
+
+// using reducer with switch statement, you should avoid this, use createReducer instead, don't write this code
+
+// export function CounterReducer(state: CounterState = initialState , action:Action ){
+//     console.log("CounterReducer state ", state, "action", action)
+//     switch(action.type) {
+//         case "[Counter] Increment": return {sum: state.sum + (action as any).payload}
+//         //...
+//         default: return state
+//     }
+// }
 
 
 // reducers? what is does

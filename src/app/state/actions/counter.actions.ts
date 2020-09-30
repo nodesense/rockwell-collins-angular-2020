@@ -8,7 +8,16 @@ export const IncrementAction = createAction(
                                 // action payload
                                 props< {payload: number }>()
                                 );
+
 //TODO: DecrementAction
+
+export const DecrementAction = createAction(
+    // action type
+    '[Counter] Decrement', 
+    // action payload
+    props< {payload: number }>()
+    );
+    
 export const ResetAction = createAction('[Counter] reset'); // no payload
 
 

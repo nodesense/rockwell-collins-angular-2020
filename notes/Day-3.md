@@ -18,6 +18,9 @@ npm install @ngrx/effects
 
 ng g module auth
 ng g c auth/components/login
+ng g service auth/services/auth-interceptor
+
+
 ```
 
 Components - data
@@ -129,3 +132,17 @@ Home component
     Increment by Value 5 or 10
     Sum - 0
     Reset
+
+
+
+// state/states
+        auth.state.ts
+
+   state/actions
+      auth.actions.ts
+
+   state/reducers
+      auth.reducer.ts
+
+   state/models
+      user.ts
