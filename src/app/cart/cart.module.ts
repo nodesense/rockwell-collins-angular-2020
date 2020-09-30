@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
+import { SummaryComponent } from './components/summary/summary.component';
 
 //FIXME. for best practice, keep routing in separate module cart.routing.module.ts
 
@@ -22,7 +23,8 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SummaryComponent
   ],
   imports: [
     RouterModule.forChild(routes), 

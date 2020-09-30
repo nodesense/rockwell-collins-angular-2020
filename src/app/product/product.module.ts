@@ -1,3 +1,4 @@
+import { AuthGuard } from './../auth/guards/auth.guard';
 import { CanEditGuard } from './guards/can-edit.guard';
 // product.module.ts
 import { SharedModule } from './../shared/shared.module';
@@ -16,8 +17,10 @@ import { SaveAlertGuard } from './guards/save-alert.guard';
 //FIXME: move to product.routing.module.ts
 const routes: Route[] = [
   {
-    path: 'products',
+    // path: 'products', // for app.module, main bundle
+    path : '', // the path /products comes from app routing, lazy load children
     component: ProductHomeComponent,
+    canActivate: [AuthGuard],
     // sub-navigation
     children: [
       {

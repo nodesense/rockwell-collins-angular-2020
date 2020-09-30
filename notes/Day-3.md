@@ -21,6 +21,16 @@ ng g c auth/components/login
 ng g service auth/services/auth-interceptor
 
 
+
+ng g guard auth/guards/auth
+
+Select CanActivate
+
+
+
+
+ng g c cart/components/summary
+
 ```
 
 Components - data
@@ -146,3 +156,60 @@ Home component
 
    state/models
       user.ts
+
+
+Debug 
+    VS Code - Google Chrome Debugger plugin
+    Chrome - source tab
+
+Polyfills
+
+for older browser,
+
+```
+npm i core-js
+```
+
+Bundles
+    main, vendor, polyfills,..
+
+Code Spliting
+    loadChildren, import
+
+AOT/JIT
+    Angular shall convert the .html files into JS files
+
+    @angular/compiler is package
+        converts .html to js files
+
+    JIT - Just in Time
+        is to do with the html views .html files
+
+        .html files are send as is to the browser
+
+         @angular/compiler  is also downloaded - heavy module / OK for development
+
+         It will convert .html to .js file in the browser
+
+         type checking is not done by Node.js, TypeScript for Views since the convert from html to js happen in browser
+
+    AoT - Ahead of Time
+        .html files converted to TS [check checking possible] then converts to JS in build environment
+        // node.js install, typescript installed
+        // type checking, missing template variables all can be detected. Default from 9.
+        
+
+Dirty Checking
+
+Life Cycle
+
+Production bundling
+
+Angular Global Error handling
+
+Environment variables, staging/qa
+3rd party modules
+Unit Testing??
+
+Assessment
+Feedback

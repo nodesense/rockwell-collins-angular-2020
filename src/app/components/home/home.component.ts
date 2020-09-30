@@ -14,7 +14,7 @@ import * as CounterActions from '../../state/actions/counter.actions';
 export class HomeComponent implements OnInit {
 
   homeLikes = 10000;
-
+  
   sum: number;
 
   counter$: Observable<CounterState>;
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     //'counter' represent key mentioned in app.module
     // StoreModule.forRoot({counter: CounterReducer}),
     // this can be simplified using async pipe
+    // Unsubscribe, otherwise memory leak, issue
     this.store.pipe(select('counter'))
               .subscribe( counter => {
                 console.log('Home comp, store subscribe ', counter);

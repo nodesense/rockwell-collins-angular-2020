@@ -37,9 +37,16 @@ export class CartService {
   // the last known value
   amount$: BehaviorSubject<number> = new BehaviorSubject(this._amount);
   itemsCount$: BehaviorSubject<number> = new BehaviorSubject(this._itemsCount)
+  cartItems$: BehaviorSubject< CartItem[]> = new BehaviorSubject(this._cartItems)
+
 
   get cartItems() {
     return this._cartItems;
+  }
+
+  set cartItems(value: CartItem[]) {
+    this._cartItems = value;
+    this.cartItems$.next(this._cartItems);
   }
 
   //  service.amount --> calls getter automaticallly
@@ -82,18 +89,32 @@ export class CartService {
 
   addItem(item: CartItem) {
     // mutation
-    this._cartItems.push(item)
+    //this._cartItems.push(item)
+
+    // immutable way
+    // clone the items into new array, shallow copy, add new item into end of the array
+    this.cartItems = [...this._cartItems, item]; 
+
     this.calculate();
   }
 
   removeItem(id: number) {
-    const index = this._cartItems.findIndex( (item) => item.id === id);
-    this._cartItems.splice(index, 1);
+    // mutable solution
+    //const index = this._cartItems.findIndex( (item) => item.id === id);
+    //this._cartItems.splice(index, 1);
+
+    // immutable way
+    // return a new array, shallow copy, except the id
+    this.cartItems = this._cartItems.filter ( item => item.id !== id);
+
     this.calculate();
   }
 
   empty() {
-    this._cartItems.splice(0, this._cartItems.length);
+    // mutable
+    // this._cartItems.splice(0, this._cartItems.length);
+
+    this.cartItems = []; // assign new array
     this.calculate();
   }
 

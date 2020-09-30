@@ -1,12 +1,13 @@
 import { CartItem } from './../../models/cart-item';
 import { CartService } from './../../services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush // whenever input property changed
 })
 export class CartComponent implements OnInit {
   cartPageLikes = 98754;
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
   orderBy="asc"
 
   // private means local to component, not accessible in view
-  cartItems: CartItem[]; // ref to cartservice.cartItems, mutablity/immutablity matters
+  cartItems$: Observable<CartItem[]>; // ref to cartservice.cartItems, mutablity/immutablity matters
 
 
   amount$:Observable<number>;
@@ -28,7 +29,7 @@ export class CartComponent implements OnInit {
    
     // cartItems is an array, reference type
     // cartItems in cart component and cartItems in service are same object
-    this.cartItems = this.cartService.cartItems; // calls getter function
+    this.cartItems$ = this.cartService.cartItems$; // calls getter function
     this.amount$ = this.cartService.amount$;
     this.itemsCount$ = this.cartService.itemsCount$;
    }
@@ -51,6 +52,7 @@ export class CartComponent implements OnInit {
   }
 
   emptyCart() {
+    console.trace() // only for chrome, not good for production
     this.cartService.empty();
   }
 

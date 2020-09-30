@@ -1,12 +1,14 @@
 import { AuthModule } from './auth/auth.module';
-import { ProductModule } from './product/product.module';
+// import { ProductModule } from './product/product.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CartModule } from './cart/cart.module';
 
-// imported from node_modules
+// imported from node_modules, vendors, 3rd party
+// all vendors code goes into vendors bundle
 import {NgModule} from '@angular/core';
 
-// imported from relative path
+// imported from relative path, your project code
+// all your project code goes into main.js bundle
 import {AppComponent} from './app.component';
 
 // All web browser specific implementation here
@@ -41,7 +43,7 @@ import { CounterReducer } from './state/reducers/counter.reducer';
 
         CartModule,
 
-        ProductModule,
+        // ProductModule,
         AuthModule,
 
         AppRoutingModule, // Last one, as it contains wildcard **

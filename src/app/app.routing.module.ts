@@ -19,6 +19,18 @@ const routes: Route[] = [
         path: 'about',
         component: AboutComponent
     },
+
+    {
+        path: 'products',
+        // webpack, automatically create a separate bundle for product.module
+        // new bundle shall be downloaded automatically when someone try to access products link
+        // ng8, ng9 onwards
+        loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
+
+        // for angular 7 or lessor
+      //  loadChildren: './product/product.module#ProductModule'
+    },
+
     // end of the config
     {
         path: '**', // match all, not found

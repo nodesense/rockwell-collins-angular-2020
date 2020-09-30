@@ -4,6 +4,8 @@
 <button (click)="addItem()" >Add Item</button>
 <button (click)="emptyCart()">Empty</button>
 
+<button (click)="true">Dummy</button>
+
 <!-- ngModel is directive, from forms module 
     Two way binding
     if value changed in view, it updates model data
@@ -27,7 +29,7 @@
 
 <p>Sort by {{fieldName}}, orderBy {{orderBy}}</p>
 
-<table *ngIf="cartItems.length > 0 else elsePartTableEmpty">
+<table *ngIf="(cartItems$ | async).length > 0 else elsePartTableEmpty">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -40,7 +42,7 @@
     <!-- * in attribute represent structural directive, which can add/remove elements dynamically   -->
 
     <!-- sort:'price':'asc'  -->
-    <tr *ngFor="let item of (cartItems | sort: fieldName: orderBy) ">
+    <tr *ngFor="let item of ((cartItems$ | async) | sort: fieldName: orderBy) ">
         <td>{{item.id}}</td>
         <td>{{item.name | uppercase }}</td>
         <td>{{item.qty}}</td>
@@ -67,6 +69,11 @@
 
     only for knowledge, in practice use (), [], [()]
 -->
+
+<app-summary [totalItems]="itemsCount$ | async"
+             [amount]="amount$ | async" >
+</app-summary>
+
 
 <app-like bind-likes="cartPageLikes"
           on-likesChange="cartPageLikes=$event"> 
