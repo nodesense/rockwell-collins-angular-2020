@@ -19,6 +19,12 @@ export class ProductService {
                .get<Product[]>(`${environment.apiEndPoint}/api/products`);
   }
 
+  // product.service.ts
+  searchProducts(q: string):Observable<Product[]> {
+    return this.http
+               .get<Product[]>(`${environment.apiEndPoint}/api/products?q=${q}`);
+  }
+
 
   getBrands():Observable<Brand[]> {
     return this.http

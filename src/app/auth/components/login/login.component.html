@@ -1,0 +1,12 @@
+<h2>Login</h2>
+
+<span>Login Status {{(auth$ | async).is_authenticated}}</span>
+
+<form (ngSubmit)="login()">
+    Username <input name="username" [(ngModel)]="username" />
+    Passworrd <input name="password" [(ngModel)]="password" type="password" />
+    
+    <span>admin:admin, user:user, staff:staff</span>
+
+    <button type="submit">Login</button>
+</form>

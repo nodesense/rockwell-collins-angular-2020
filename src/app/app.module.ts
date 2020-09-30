@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CartModule } from './cart/cart.module';
@@ -20,6 +21,10 @@ import { AppRoutingModule } from './app.routing.module';
 // for API calls
 import {HttpClientModule} from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { StoreModule } from '@ngrx/store';
+import { AuthReducer } from './state/reducers/auth.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/effects/auth.effects';
 
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
@@ -34,8 +39,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         CartModule,
 
         ProductModule,
+        AuthModule,
+
+        AppRoutingModule,
         
-        AppRoutingModule
+
+        StoreModule.forRoot({auth: AuthReducer}),
+        EffectsModule.forRoot([AuthEffects]),
+
         // Optional import RouterModule here
         // InventoryModule, ProductModule
     ],
@@ -50,10 +61,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         //HomeComponent, FooterComponent, .....
     ],
     providers: [
-        {
-            provide: LocationStrategy,
-            useClass: HashLocationStrategy
-        }
+        // {
+        //     provide: LocationStrategy,
+        //     useClass: HashLocationStrategy
+        // }
 
     ], // discussed later, services, DI
 
