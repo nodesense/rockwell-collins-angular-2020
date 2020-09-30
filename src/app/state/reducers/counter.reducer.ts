@@ -8,7 +8,17 @@ import * as CounterActions from '../actions/counter.actions';
 export const initialState = initializeState();
 const reducer = createReducer(
     initialState,
-    // TODOs
+    // implementing action, by incrementing sum + value from payload
+    // shall be called when do dispatch IncrementAction
+    on(CounterActions.IncrementAction, (state: CounterState, action ) => {
+        // returned value set back to store
+        return { sum: state.sum + action.payload }
+    }),
+    // called when dispatch ResetAction
+    on(CounterActions.ResetAction, (state: CounterState, action) => {
+        return {sum: 0}
+    })
+    // TODOs Decrement
 );
 
 export function CounterReducer(state: CounterState , action:Action ){

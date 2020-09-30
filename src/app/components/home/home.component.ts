@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import {Store, select} from '@ngrx/store';
 import {CounterState} from '../../state/states/counter.state';
 
+import * as CounterActions from '../../state/actions/counter.actions';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,12 +38,26 @@ export class HomeComponent implements OnInit {
   }
 
   increment() {
+
+    // dispatch
+    // is used to dispatch action to store
+    // for every dispatch, reducers are called
+    // and matching switch, on(ActionType) is called
+    // after dispatch, the new values are turned from the reducer
+    // store values are updated
+    // susbcribe methods called automaticaly, component get latest value
+    const action = CounterActions.IncrementAction({payload: 10});
+
+    this.store.dispatch(action);
+
   }
 
   decrement() {
   }
 
   reset() {
+    // reset value to 0
+    this.store.dispatch(CounterActions.ResetAction());
   }
 
 }
