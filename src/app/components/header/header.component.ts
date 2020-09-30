@@ -3,6 +3,9 @@ import { Component, OnInit,
          Output, EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import AuthState from 'src/app/state/states/auth.state';
+import { LoggedOut } from './../../state/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -27,8 +30,14 @@ export class HeaderComponent implements OnInit {
 
   totalItemsInCart$: Observable<number>;
 
-  constructor(private cartService: CartService) { 
+  auth$: Observable<AuthState>
+
+
+  constructor(private cartService: CartService, 
+              private store: Store< {auth: AuthState}> ) { 
     this.totalItemsInCart$ = this.cartService.itemsCount$;
+
+    this.auth$ = store.pipe(select('auth'))
   }
 
   ngOnInit(): void {
@@ -50,6 +59,10 @@ export class HeaderComponent implements OnInit {
     
     // FIXME: call parent for logout
     this.logoutEvent.next(true); // emitting an event, subscribed by parent
+  
+    // dispatch action
+    this.store.dispatch(LoggedOut())
+  
   }
 
 }

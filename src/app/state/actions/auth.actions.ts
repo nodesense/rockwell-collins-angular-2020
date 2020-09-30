@@ -24,4 +24,5 @@ export const LoggedInError = createAction(
 // user logged, clean local storage, ...
 export const LoggedOut = createAction('[Auth] LoggedOut');
 
-  
+
+export const LoggedOutSuccess = createAction('[Auth] LoggedOutSuccess');

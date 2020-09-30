@@ -1,7 +1,7 @@
 <div>
     <!-- a component, from CommonModule, -->
     <!-- bring out the content children render here -->
-    <button (click)="logout()">Logout</button>
+    
     
     <ng-content></ng-content>
 
@@ -16,7 +16,12 @@
     
     <a routerLink="/checkout" class="button" routerLinkActive="success"> Checkout </a>
 
-    <a routerLink="/login" class="button" routerLinkActive="success"> Login </a>
+    <a *ngIf="!(auth$ | async).is_authenticated" 
+        routerLink="/login" class="button" 
+        routerLinkActive="success"> Login </a>
+
+    <button *ngIf="(auth$ | async).is_authenticated" 
+             (click)="logout()">Logout</button>
 
 
     <span> Cart {{amount | currency:'INR'}}</span>
@@ -28,6 +33,9 @@
     -->
     <span> Qty {{totalItemsInCart$ | async }}</span>
 
+    <span *ngIf="(auth$ | async).is_authenticated">
+        {{(auth$ | async).user.name}}
+    </span>
     
     <hr />
 </div>

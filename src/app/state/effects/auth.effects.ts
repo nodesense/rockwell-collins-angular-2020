@@ -1,3 +1,4 @@
+import { createAction } from '@ngrx/store';
 
 // effects are called as middlewares
 // they intercept the actions dispatched to reducers
@@ -9,7 +10,7 @@
 
 // state/effects/auth.effects.ts
 import { environment } from './../../../environments/environment';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -38,7 +39,9 @@ export class AuthEffects {
         // merge the observable returned from http.post
         mergeMap( action => {
             const usernamePassword = action.payload;
-            return this.http.post<any>(environment.authEndPoint, action.payload).pipe (map ( (data: any) => {
+            return this.http.post<any>(environment.authEndPoint, usernamePassword)
+                            .pipe (map ( (data: any) => {
+                                // data contains token, identity
                 console.log("login success ", data);
                 // store the token to local storage
                 
@@ -52,4 +55,15 @@ export class AuthEffects {
             }))
         })
     ) ) 
+
+
+    loggedOut$: Observable<Action> = createEffect ( () => this.action$.pipe(
+        ofType(AuthActions.LoggedOut),
+        map (action => {
+            window.localStorage.removeItem("token");
+            // window.localStorage.clear(); // all local storage/session storage
+            return AuthActions.LoggedOutSuccess()
+        })
+        ))
+       
  }
