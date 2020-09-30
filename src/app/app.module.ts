@@ -21,10 +21,13 @@ import { AppRoutingModule } from './app.routing.module';
 // for API calls
 import {HttpClientModule} from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import { StoreModule } from '@ngrx/store';
+
 import { AuthReducer } from './state/reducers/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/effects/auth.effects';
+import { CounterReducer } from './state/reducers/counter.reducer';
 
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
@@ -43,8 +46,12 @@ import { AuthEffects } from './state/effects/auth.effects';
 
         AppRoutingModule,
         
+        // initialize the store, it will have sum value with 0
+        StoreModule.forRoot({counter: CounterReducer}),
 
-        StoreModule.forRoot({auth: AuthReducer}),
+        // StoreModule.forRoot({auth: AuthReducer}),
+
+
         EffectsModule.forRoot([AuthEffects]),
 
         // Optional import RouterModule here

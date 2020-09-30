@@ -1,5 +1,14 @@
 <h2>Home</h2>
 
+<p>Counter {{sum}}</p>
+
+<p>Counter Async {{ (counter$ | async).sum }} </p>
+
+<button (click)="increment()">+1</button>
+<button (click)="decrement()">-1</button>
+<button (click)="reset()">0</button>
+
+
 <app-like [likes]="homeLikes"
           (likesChange)="homeLikes=$event"
 ></app-like>
