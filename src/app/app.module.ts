@@ -44,13 +44,11 @@ import { CounterReducer } from './state/reducers/counter.reducer';
         ProductModule,
         AuthModule,
 
-        AppRoutingModule,
+        AppRoutingModule, // Last one, as it contains wildcard **
         
         // initialize the store, it will have sum value with 0
-        StoreModule.forRoot({counter: CounterReducer}),
-
-        // StoreModule.forRoot({auth: AuthReducer}),
-
+        StoreModule.forRoot({counter: CounterReducer, 
+                             auth: AuthReducer}),
 
         EffectsModule.forRoot([AuthEffects]),
 

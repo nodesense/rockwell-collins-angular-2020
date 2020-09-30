@@ -7,6 +7,8 @@ import * as AuthActions from '../actions/auth.actions';
  
 export const intialState = initializeState();
 
+// should never write async in reducer, only sync code
+// async code should go in effects
 const reducer = createReducer(
   intialState,
   on(AuthActions.LoggedIn, (state: AuthState, {payload}) => {
@@ -18,5 +20,6 @@ const reducer = createReducer(
 );
 
 export function AuthReducer(state: AuthState | undefined, action: Action) {
+  console.log('AuthReducer', state, 'action', action)
   return reducer(state, action);
 }

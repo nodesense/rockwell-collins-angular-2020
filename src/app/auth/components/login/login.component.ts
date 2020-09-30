@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit {
   login() {
     const info = {username: this.username, password: this.password}
     console.log('dispatching ', info)
+    // reducers cannot handle this action
+    // because, we need to make api call
+    // we made api calls from components
+    // ngrx - use effects to make api call, not from component
     this.store.dispatch(AuthActions.LoginAction({payload: {...info}}))
   }
 
