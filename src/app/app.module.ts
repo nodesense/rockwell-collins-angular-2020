@@ -5,7 +5,7 @@ import { CartModule } from './cart/cart.module';
 
 // imported from node_modules, vendors, 3rd party
 // all vendors code goes into vendors bundle
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 // imported from relative path, your project code
 // all your project code goes into main.js bundle
@@ -30,6 +30,7 @@ import { AuthReducer } from './state/reducers/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/effects/auth.effects';
 import { CounterReducer } from './state/reducers/counter.reducer';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 
 //NgModule is decorator @, meta data for the module
 // Actual module is AppModule
@@ -72,6 +73,11 @@ import { CounterReducer } from './state/reducers/counter.reducer';
         //     provide: LocationStrategy,
         //     useClass: HashLocationStrategy
         // }
+
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandlerService
+        }
 
     ], // discussed later, services, DI
 

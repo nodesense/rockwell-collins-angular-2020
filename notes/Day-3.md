@@ -31,6 +31,11 @@ Select CanActivate
 
 ng g c cart/components/summary
 
+
+For global error handling
+
+ng g service services/global-error-handler
+
 ```
 
 Components - data
@@ -203,13 +208,55 @@ Dirty Checking
 
 Life Cycle
 
-Production bundling
 
 Angular Global Error handling
 
 Environment variables, staging/qa
+
+    angular.json 
+      configuration entry to be updated
+      refer staging entries
+
+
+Production Build 
+```
+
+    ng build --prod
+
+    run as admin
+
+    npm install http-server -g 
+
+
+    cd dist/product-app
+
+    http-server -p 9999 -c-1
+
+    open browser with http://localhost:9999
+```
+
+Staging build
+
+```
+
+    ng build --configuration staging
+
+
+    cd dist/product-app
+
+    http-server -p 9999 -c-1
+
+    open browser with http://localhost:9999
+```
+
+
+
+Production bundling
+
 3rd party modules
 Unit Testing??
 
 Assessment
 Feedback
+
+

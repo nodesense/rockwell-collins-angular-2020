@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  buildName: "Prod Build",
+  buildName: "Staging Build",
   apiEndPoint: 'http://localhost:7070',
   authEndPoint: 'http://localhost:7070/oauth/token'
 };
